@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medellin Tour - Descubre Medellín</title>
+    <link rel="stylesheet" href="css/proyecto.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">Medellin Tours</a>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="#equipo" class="nav-link">Equipo</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li><a href="login.html" class="nav-link btn-outline">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-element">
+            <i class="fas fa-mountain" style="font-size: 8rem; color: rgba(255,255,255,0.1);"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-tree" style="font-size: 6rem; color: rgba(255,255,255,0.1);"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-leaf" style="font-size: 4rem; color: rgba(255,255,255,0.1);"></i>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Nada como volver donde uno es contento</h1>
+                <p>Descubre Medellín, una ciudad llena de cultura, belleza y tradición que te enamorará con cada rincón. Vive la magia de la ciudad de la eterna primavera.</p>
+                <a href="#servicios" class="btn btn-primary">
+                    <i class="fas fa-compass"></i> Explorar Medellín
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Nuestros Servicios</h2>
+                <p>Te ofrecemos la mejor experiencia turística en Medellín con servicios personalizados y de calidad.</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Recorridos Guiados</h3>
+                    <p>Explora Medellín con guías expertos locales que te mostrarán los lugares más emblemáticos y te contarán las historias que hacen única a nuestra ciudad.</p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Turismo Seguro</h3>
+                    <p>Información actualizada sobre zonas seguras y recomendaciones de seguridad para que disfrutes tu visita con total tranquilidad.</p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Itinerarios Personalizados</h3>
+                    <p>Creamos rutas adaptadas a tus intereses, tiempo disponible y preferencias para que aproveches al máximo tu estadía en Medellín.</p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Centros Comerciales</h3>
+                    <p>Descubre los mejores centros comerciales de la ciudad con experiencias de compras únicas y entretenimiento para toda la familia.</p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Gastronomía Local</h3>
+                    <p>Te llevamos a los mejores restaurantes y lugares de comida típica para que experimentes los sabores auténticos de Antioquia.</p>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunidad de Viajeros</h3>
+                    <p>Conecta con otros usuarios, comparte experiencias y obtén recomendaciones de primera mano de quienes ya han visitado Medellín.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="section section-gray">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Sobre <br>Medellin Tours</h2>
+                <p>Somos una empresa comprometida con promover el turismo responsable y seguro en Medellín, Antioquia.</p>
+            </div>
+            
+            <div class="grid grid-2" style="align-items: center; margin-bottom: 4rem;">
+                <div class="fade-in">
+                    <h3 class="text-primary mb-3">
+                        <i class="fas fa-bullseye"></i> Nuestra Misión
+                    </h3>
+                    <p>Conectar a nuestros usuarios con la esencia de Medellín, garantizando experiencias inolvidables, seguras y auténticas que les permitan descubrir la verdadera magia de nuestra ciudad.</p>
+                    
+                    <h3 class="text-primary mb-3">
+                        <i class="fas fa-eye"></i> Nuestra Visión
+                    </h3>
+                    <p>Ser la plataforma líder en turismo digital para Medellín, reconocida por la calidad de nuestros servicios y nuestro compromiso con el desarrollo sostenible del turismo local.</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div style="width: 70%; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-xl); background: linear-gradient(45deg, var(--nature-green), var(--mountain-blue)); padding: 3rem;">
+                        <i class="fas fa-city" style="font-size: 8rem; color: var(--white); margin-bottom: 1rem;"></i>
+                        <h4 style="color: var(--white); margin: 0;">Medellín</h4>
+                        <p style="color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">Ciudad de la Eterna Primavera</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equipo" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Nuestro Equipo</h2>
+                <p>Conoce a las personas apasionadas que hacen posible tu experiencia en Medellín</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Juliana Pulgarín Higuita</h4>
+                    <p><i class="fas fa-chart-line"></i> Especialista en Marketing Digital y Experiencia de Usuario</p>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>Ximena Cortés Osorio</h4>
+                    <p><i class="fas fa-book-reader"></i> Coordinadora de Contenidos y Guías Turísticas</p>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Samuel Sebastián Castrillón</h4>
+                    <p><i class="fas fa-laptop-code"></i> Desarrollador Full Stack y Arquitecto de Sistemas</p>
+                </div>
+                
+                <div class="team-card fade-in" style="grid-column: 1/-1; max-width: 350px; margin: 0 auto;">
+                    <div class="team-avatar">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h4>Tomás Carmona</h4>
+                    <p><i class="fas fa-paint-brush"></i> Diseñador de Estilos y Arquitecto de Sistemas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2><i class="fas fa-envelope"></i> Contacto</h2>
+                <p>¿Listo para vivir la experiencia Medellín? Contáctanos y comencemos a planear tu aventura</p>
+            </div>
+
+            <form action="procesar_contacto.php" method="post" class="contact-form fade-in">
+                <div class="form-group">
+                    <label for="nombre"><i class="fas fa-user"></i> Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="correo"><i class="fas fa-at"></i> Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required placeholder="tucorreo@ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje"><i class="fas fa-comment-alt"></i> Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos qué te gustaría conocer de Medellín..."></textarea>
+                </div>
+
+                <div class="footer-bottom">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Enviar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Navigation
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Form validation and enhancement
+        const form = document.querySelector('.contact-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple form validation
+                const nombre = document.getElementById('nombre').value.trim();
+                const correo = document.getElementById('correo').value.trim();
+                const mensaje = document.getElementById('mensaje').value.trim();
+                
+                if (!nombre || !correo || !mensaje) {
+                    alert('Por favor, completa todos los campos.');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(correo)) {
+                    alert('Por favor, ingresa un correo electrónico válido.');
+                    return;
+                }
+                
+                // Simulate form submission
+                const button = form.querySelector('button[type="submit"]');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    alert('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
+                    form.reset();
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            });
+        }
+
+        // Add loading animation to page
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.card, .team-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

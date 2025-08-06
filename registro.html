@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medellin tour - Registrarse</title>
+    <link rel="stylesheet" href="css/registro.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="register-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-logo">Medellin Tour</h1><br>
+                <p class="hero-subtitle">Descubre la magia de Medellín</p>
+                <p class="hero-description">
+                    Únete a la comunidad más vibrante de Medellín. Descubre lugares únicos, 
+                    conecta con locales y vive experiencias auténticas en la ciudad de la eterna primavera.
+                </p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Lugares únicos</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>Comunidad local</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <span>Experiencias auténticas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <div class="form-header">
+                <h2 class="form-title">¡Únete ahora!</h2>
+                <p class="form-subtitle">Crea tu cuenta y comienza la aventura</p>
+            </div>
+
+            <form class="register-form" id="registerForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" id="firstName" class="form-input" placeholder=" " required>
+                        <i class="fas fa-user input-icon"></i>
+                        <label class="floating-label">Nombre</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="lastName" class="form-input" placeholder=" " required>
+                        <i class="fas fa-user input-icon"></i>
+                        <label class="floating-label">Apellido</label>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <input type="email" id="email" class="form-input" placeholder=" " required>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <label class="floating-label">Correo electrónico</label>
+                    <div class="validation-message" id="emailValidation"></div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="tel" id="phone" class="form-input" placeholder=" " required>
+                        <i class="fas fa-phone input-icon"></i>
+                        <label class="floating-label">Teléfono</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" id="birthDate" class="form-input" required>
+                        <i class="fas fa-calendar-alt input-icon"></i>
+                        <label class="floating-label">Fecha de nacimiento</label>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <select id="city" class="form-select" required>
+                        <option value="">Selecciona tu ciudad</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="bogota">Bogotá</option>
+                        <option value="cali">Cali</option>
+                        <option value="barranquilla">Barranquilla</option>
+                        <option value="cartagena">Cartagena</option>
+                        <option value="otra">Otra ciudad</option>
+                    </select>
+                    <i class="fas fa-map-marker-alt input-icon"></i>
+                    <label class="floating-label">Ciudad de residencia</label>
+                </div>
+
+                <div class="form-group full-width">
+                    <input type="password" id="password" class="form-input" placeholder=" " required>
+                    <i class="fas fa-lock input-icon"></i>
+                    <label class="floating-label">Contraseña</label>
+                    <button type="button" class="password-toggle" id="passwordToggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                    </div>
+                    <div class="password-help">
+                        Mínimo 8 caracteres, incluye mayúsculas, minúsculas y números
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <input type="password" id="confirmPassword" class="form-input" placeholder=" " required>
+                    <i class="fas fa-lock input-icon"></i>
+                    <label class="floating-label">Confirmar contraseña</label>
+                    <button type="button" class="password-toggle" id="confirmPasswordToggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <div class="validation-message" id="passwordValidation"></div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms" class="checkbox-text">
+                        Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a>
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter">
+                    <label for="newsletter" class="checkbox-text">
+                        Quiero recibir noticias y ofertas especiales de MonteAdentro
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    Crear mi cuenta
+                </button>
+            </form>
+
+            <div class="social-section">
+                <div class="divider">o regístrate con</div>
+
+                <div class="social-login">
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </a>
+                    <a href="#" class="social-btn">
+                        <i class="fab
