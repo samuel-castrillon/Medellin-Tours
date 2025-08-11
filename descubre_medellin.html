@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/taza-de-cafe.png" type="image/x-icon">
+    <title>Descubre Medellín - Mapa Interactivo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* 🖼️ CAMBIAR AQUÍ TU IMAGEN DE FONDO - Reemplaza 'TU_IMAGEN_AQUI.jpg' con la URL de tu imagen */
+            background: url('img/fondo1.jpg') center center / cover no-repeat fixed;
+            /* Overlay opcional para mejorar legibilidad del texto */
+            background-color: rgba(0, 0, 0, 0.3);
+            background-blend-mode: overlay;
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Overlay semitransparente para mejorar el contraste */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(0.5deg); }
+            66% { transform: translateY(15px) rotate(-0.5deg); }
+        }
+
+        /* Header container con fondo semitransparente */
+        .header-container {
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            margin: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #224b229a;
+            text-shadow: 
+                0 4px 20px rgba(25, 68, 23, 0.8),
+                0 2px 10px rgba(92, 161, 120, 0.6);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #34f160, #648d6b, #49e68f);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            letter-spacing: -1px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Map container */
+        .map-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem 2rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        #map {
+            height: 70vh;
+            width: 90%;
+            max-width: 1400px;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #map:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Enhanced popup styling */
+        .leaflet-popup-content-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.25),
+                0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            overflow: hidden;
+        }
+
+        .leaflet-popup-content {
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            margin: 0 !important;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 1rem;
+            margin: -8px -20px 15px -20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .popup-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid rgba(0, 0, 0, 0.9);
+        }
+
+        .popup-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-image {
+            width: 100%;
+            max-width: none;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0 15px 0;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .popup-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+            padding: 0 5px;
+        }
+
+        /* Custom popup tip styling */
+        .leaflet-popup-tip {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-out 2s forwards;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            #map {
+                height: 60vh;
+                width: 95%;
+                border-radius: 15px;
+            }
+
+            .popup-header h3 {
+                font-size: 1.1rem;
+            }
+
+            .popup-image {
+                height: 120px;
+            }
+
+            .popup-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            #map {
+                height: 50vh;
+                width: 98%;
+            }
+
+            .leaflet-popup-content {
+                max-width: 250px;
+            }
+        }
+
+        /* Custom marker effects */
+        .leaflet-marker-icon {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .leaflet-marker-icon:hover {
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6)) brightness(1.2);
+            transform: scale(1.15);
+        }
+
+        /* Credits */
+        .credits {
+            text-align: center;
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            animation: fadeInUp 1s ease-out 1.2s both;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="header-container">
+        <h1>🌿 Descubre Medellín 🌿</h1>
+        <p class="subtitle">🌱 Explora los lugares más emblemáticos de la Ciudad de la Eterna Primavera 🌱</p>
+    </div>
+    
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+
+    <div class="credits">
+        🌳 Mapa interactivo de Medellín • Diseñado con 💚 para la Eterna Primavera. 🌸
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Inicializar mapa centrado en Medellín
+        var map = L.map('map', {
+            center: [6.2442, -75.5812],
+            zoom: 13,
+            zoomControl: true,
+            scrollWheelZoom: true,
+            doubleClickZoom: true,
+            boxZoom: true,
+            keyboard: true,
+            dragging: true,
+            touchZoom: true
+        });
+
+        // Añadir capa de tiles con estilo personalizado
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19,
+            tileSize: 256,
+            zoomOffset: 0
+        }).addTo(map);
+
+        // Lugares de interés con más lugares emblemáticos de Medellín
+        var lugares = [
+            {
+                nombre: "Jardín Botánico",
+                ubicacion: [6.2709, -75.5723],
+                foto: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop&crop=center",
+                descripcion: "Un oasis verde con más de 1,000 especies de plantas nativas y un hermoso mariposario que alberga especies endémicas de la región."
+            },
+            {
+                nombre: "Metrocable",
+                ubicacion: [6.2596, -75.5904],
+                foto: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=300&h=200&fit=crop&crop=center",
+                descripcion: "Innovador sistema de transporte por cable que conecta las comunas y ofrece vistas espectaculares de toda la ciudad."
+            },
+            {
+                nombre: "Plaza Botero",
+                ubicacion: [6.2476, -75.5658],
+                foto: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=300&h=200&fit=crop&crop=center",
+                descripcion: "Espacio público que alberga 23 esculturas monumentales del maestro Fernando Botero, símbolo del arte paisa."
+            },
+            {
+                nombre: "Parque Explora",
+                ubicacion: [6.2677, -75.5686],
+                foto: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=300&h=200&fit=crop&crop=center",
+                descripcion: "Museo interactivo de ciencias y tecnología con acuario, planetario y más de 300 experiencias educativas."
+            },
+            {
+                nombre: "Comuna 13",
+                ubicacion: [6.2442, -75.6063],
+                foto: "https://images.unsplash.com/photo-1583251523016-1082ad0fe5b2?w=300&h=200&fit=crop&crop=center",
+                descripcion: "Transformación urbana ejemplar con arte callejero vibrante, escaleras eléctricas y una historia de superación."
+            }
+        ];
+
+        // Función para crear popup personalizado
+        function createPopup(lugar) {
+            return `
+                <div class="popup-header">
+                    <h3>${lugar.nombre}</h3>
+                </div>
+                <img class="popup-image" src="${lugar.foto}" alt="${lugar.nombre}" loading="lazy">
+                <p class="popup-description">${lugar.descripcion}</p>
+            `;
+        }
+
+        // Añadir marcadores con animación
+        lugares.forEach(function(lugar, index) {
+            setTimeout(() => {
+                var marker = L.marker(lugar.ubicacion).addTo(map)
+                    .bindPopup(createPopup(lugar), {
+                        maxWidth: 300,
+                        className: 'custom-popup'
+                    });
+                
+                // Efecto de rebote al agregar marcador
+                marker.on('add', function() {
+                    const icon = this._icon;
+                    if (icon) {
+                        icon.style.animation = 'bounce 0.6s ease-out';
+                    }
+                });
+            }, index * 200);
+        });
+
+        // Agregar animación de rebote
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0% { transform: translateY(-20px) scale(0.8); opacity: 0; }
+                50% { transform: translateY(-10px) scale(1.1); opacity: 0.7; }
+                100% { transform: translateY(0) scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mejorar la interactividad del mapa
+        map.on('zoomend', function() {
+            const zoomLevel = map.getZoom();
+            const markers = document.querySelectorAll('.leaflet-marker-icon');
+            markers.forEach(marker => {
+                const scale = Math.min(1.2, 0.8 + (zoomLevel / 20));
+                marker.style.transform = `scale(${scale})`;
+            });
+        });
+
+        // Remover overlay de carga después de que el mapa esté listo
+        map.whenReady(() => {
+            setTimeout(() => {
+                const loadingOverlay = document.querySelector('.loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'none';
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
