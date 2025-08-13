@@ -1,3 +1,8 @@
+<?php
+    // Llamado a Módulos necesarios.
+    include "conecionDB.php";
+    include "crud.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

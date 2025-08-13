@@ -12,7 +12,7 @@
     );
 
     try {
-        $conection = new PDO("mysql:host=".$host.";dbname=".$database, $user, $password, $options);
+        $conexion = new PDO("mysql:host=".$host.";dbname=".$database, $user, $password, $options);
         echo "Conexion exitosa";
     } catch (PDOException $error) {
         echo "Error: ".$error->getMessage();
