@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Mobile First - 320px+ */
+.dashboard {
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "sidebar"
+    "main";
+  grid-template-rows: auto auto 1fr;
+}
+
+/* Header */
+.header {
+  grid-area: header;
+  background: #2563eb;
+  color: white;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+}
+
+.header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.user-info {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+/* Sidebar */
+.sidebar {
+  grid-area: sidebar;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.sidebar.active {
+  max-height: 300px;
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-menu li {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 0.875rem 1rem;
+  color: #374151;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+
+/* Main Content */
+.main {
+  grid-area: main;
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+.page-title {
+  margin-bottom: 1.5rem;
+}
+
+.page-title h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+}
+
+/* Stats Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .value {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.stat-card .change {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.positive {
+  color: #059669;
+}
+.negative {
+  color: #dc2626;
+}
+
+/* Content Sections */
+.content-section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.section-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+/* Table */
+.table-container {
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.table td {
+  color: #6b7280;
+}
+
+.status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Responsive Design - Tablets 768px+ */
+@media (min-width: 768px) {
+  .dashboard {
+    grid-template-areas:
+      "header header"
+      "sidebar main";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .sidebar {
+    max-height: none;
+    border-bottom: none;
+    border-right: 1px solid #e5e7eb;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .user-info {
+    display: flex;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Desktop 1024px+ */
+@media (min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .main {
+    padding: 2rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+/* Large screens 1280px+ */
+@media (min-width: 1280px) {
+  .main {
+    max-width: 1200px;
+  }
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">AD</div>
+                <span>Admin</span>
+            </div>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-page="dashboard">📊 Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-page="users">👥 Usuarios</a></li>
+                <li><a href="#" class="nav-link" data-page="products">📦 Productos</a></li>
+                <li><a href="#" class="nav-link" data-page="orders">📋 Pedidos</a></li>
+                <li><a href="#" class="nav-link" data-page="reports">📈 Reportes</a></li>
+                <li><a href="#" class="nav-link" data-page="settings">⚙️ Configuración</a></li>
+            </ul>
+        </nav>
+
+        <main class="main">
+            <div class="page-title">
+                <h2 id="pageTitle">Dashboard General</h2>
+            </div>
+
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Usuarios Totales</h3>
+                        <div class="value">2,847</div>
+                        <div class="change positive">+12% vs mes anterior</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ventas</h3>
+                        <div class="value">$18,394</div>
+                        <div class="change positive">+8.2% vs mes anterior</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pedidos</h3>
+                        <div class="value">847</div>
+                        <div class="change negative">-3.1% vs mes anterior</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Productos</h3>
+                        <div class="value">156</div>
+                        <div class="change positive">+2 nuevos</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Actividad Reciente</h3>
+                        <a href="#" class="btn btn-secondary">Ver todo</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Acción</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Juan Pérez</td>
+                                    <td>Nuevo pedido #1234</td>
+                                    <td><span class="status active">Activo</span></td>
+                                    <td>Hace 5 min</td>
+                                </tr>
+                                <tr>
+                                    <td>María García</td>
+                                    <td>Registro de usuario</td>
+                                    <td><span class="status active">Activo</span></td>
+                                    <td>Hace 10 min</td>
+                                </tr>
+                                <tr>
+                                    <td>Carlos López</td>
+                                    <td>Pedido cancelado #1233</td>
+                                    <td><span class="status inactive">Cancelado</span></td>
+                                    <td>Hace 1 hora</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Pages (Hidden by default) -->
+            <div id="users-page" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Gestión de Usuarios</h3>
+                        <a href="#" class="btn btn-primary">Agregar Usuario</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ana Martínez</td>
+                                    <td>ana@example.com</td>
+                                    <td>Admin</td>
+                                    <td><span class="status active">Activo</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-secondary">Editar</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Pedro Sánchez</td>
+                                    <td>pedro@example.com</td>
+                                    <td>Usuario</td>
+                                    <td><span class="status active">Activo</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-secondary">Editar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="products-page" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Gestión de Productos</h3>
+                        <a href="#" class="btn btn-primary">Agregar Producto</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Laptop Dell XPS</td>
+                                    <td>Electrónicos</td>
+                                    <td>$999</td>
+                                    <td>25</td>
+                                    <td><span class="status active">Activo</span></td>
+                                </tr>
+                                <tr>
+                                    <td>iPhone 14</td>
+                                    <td>Electrónicos</td>
+                                    <td>$799</td>
+                                    <td>12</td>
+                                    <td><span class="status active">Activo</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="orders-page" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Gestión de Pedidos</h3>
+                        <a href="#" class="btn btn-primary">Nuevo Pedido</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1234</td>
+                                    <td>Juan Pérez</td>
+                                    <td>$299</td>
+                                    <td><span class="status active">Completado</span></td>
+                                    <td>23/08/2025</td>
+                                </tr>
+                                <tr>
+                                    <td>#1235</td>
+                                    <td>María García</td>
+                                    <td>$150</td>
+                                    <td><span class="status inactive">Pendiente</span></td>
+                                    <td>23/08/2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reports-page" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Reportes y Análisis</h3>
+                        <a href="#" class="btn btn-primary">Generar Reporte</a>
+                    </div>
+                    <div style="padding: 2rem; text-align: center; color: #6b7280;">
+                        <p>Aquí se mostrarían los gráficos y reportes del sistema.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings-page" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Configuración del Sistema</h3>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1rem; color: #374151;">Configuraciones Generales</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #374151;">Nombre del Sistema:</label>
+                                <input type="text" value="Dashboard Admin" style="width: 100%; max-width: 300px; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #374151;">Email de Contacto:</label>
+                                <input type="email" value="admin@dashboard.com" style="width: 100%; max-width: 300px; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px;">
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageTitle = document.getElementById('pageTitle');
+            const pageContents = document.querySelectorAll('.page-content');
+
+            // Toggle sidebar en móviles
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+
+            // Cerrar sidebar al hacer click fuera en móviles
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth < 768) {
+                    if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+
+            // Navegación entre páginas
+            const pageTitles = {
+                'dashboard': 'Dashboard General',
+                'users': 'Gestión de Usuarios',
+                'products': 'Gestión de Productos',
+                'orders': 'Gestión de Pedidos',
+                'reports': 'Reportes y Análisis',
+                'settings': 'Configuración del Sistema'
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const page = this.getAttribute('data-page');
+                    
+                    // Actualizar enlaces activos
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Actualizar título
+                    pageTitle.textContent = pageTitles[page];
+                    
+                    // Mostrar/ocultar contenido
+                    pageContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    const targetPage = document.getElementById(page + '-page');
+                    if (targetPage) {
+                        targetPage.style.display = 'block';
+                    }
+                    
+                    // Cerrar sidebar en móviles
+                    if (window.innerWidth < 768) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+
+            // Cerrar sidebar al cambiar tamaño de ventana
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
