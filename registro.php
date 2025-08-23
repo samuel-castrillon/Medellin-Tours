@@ -49,7 +49,7 @@
                 <p class="form-subtitle">Crea tu cuenta y comienza la aventura</p>
             </div>
 
-            <form class="register-form" id="registerForm" action="crud.php" method="post">
+            <form class="register-form" id="registerForm" action="./crud.php" method="post">
                 <div class="form-grid">
                     <div class="form-group">
                         <input type="text" id="firstName" class="form-input" placeholder="Nombre" required name="user_name">

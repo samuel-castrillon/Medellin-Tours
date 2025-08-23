@@ -68,8 +68,8 @@
         }
 
         html, body {
-            height: 100vh;
-            overflow: hidden;
+            height: 100%;
+            min-height: 100vh;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
@@ -77,28 +77,41 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
             display: flex;
             position: relative;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         /* Animación de fondo */
         body::before {
             content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: 
                 radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(201, 168, 118, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
             z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
-            33% { transform: translateX(30px) translateY(-30px) rotate(120deg); }
-            66% { transform: translateX(-20px) translateY(20px) rotate(240deg); }
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: scale(1.02) rotate(120deg);
+                opacity: 0.8;
+            }
+            66% { 
+                transform: scale(0.98) rotate(240deg);
+                opacity: 0.7;
+            }
         }
 
         /* Theme Toggle Button */
@@ -132,7 +145,7 @@
         .register-container {
             display: flex;
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             position: relative;
             z-index: 2;
         }
@@ -231,11 +244,11 @@
             background: var(--card-bg);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 3rem;
             box-shadow: var(--shadow-xl);
             overflow-y: auto;
-            text-size-adjust: 50px;
+            min-height: 100vh;
         }
 
         .form-section::before {
@@ -251,6 +264,7 @@
         .form-header {
             text-align: center;
             margin-bottom: 2.5rem;
+            margin-top: 2rem;
         }
 
         .form-title {
@@ -644,6 +658,8 @@
             .form-section {
                 flex: 1;
                 padding: 2rem;
+                min-height: 60vh;
+                justify-content: flex-start;
             }
         }
 
@@ -664,6 +680,7 @@
             
             .form-section {
                 padding: 1.5rem;
+                min-height: 65vh;
             }
             
             .form-title {
@@ -691,6 +708,7 @@
             
             .form-section {
                 padding: 1rem;
+                min-height: 70vh;
             }
             
             .hero-features {
@@ -699,5 +717,10 @@
             
             .feature-item {
                 font-size: 0.9rem;
+            }
+            
+            .form-header {
+                margin-top: 1rem;
+                margin-bottom: 2rem;
             }
         }

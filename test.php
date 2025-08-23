@@ -1,6 +1,6 @@
 <?php
     // Llamado a Módulos necesarios.
-    include "conecionDB.php";
+    include "conexionDB.php";
     include "crud.php";
 ?>
 <!DOCTYPE html>
